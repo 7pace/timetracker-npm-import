@@ -1,12 +1,12 @@
-# 7pace-worklogs-import
+# timetracker-npm-import
 
-__7pace-worklogs-import__ is a Node.js CLI for importing worklogs(csv/excel) to 7pace Timetracker
+__timetracker-npm-import__ is a Node.js CLI for importing worklogs(csv/excel) to 7pace Timetracker
 
 ## Install
 
-You can install __7pace-worklogs-import__ using the Node Package Manager (npm):
+You can install __timetracker-npm-import__ using the Node Package Manager (npm):
 
-    npm install 7pace-worklogs-import
+    npm install timetracker-npm-import
 
 To build the application locally, you need to get the code from the repository and run the commands in the source folder:
 
