@@ -1,0 +1,11 @@
+{
+    "map": {
+        "userName": "A",
+        "timeStamp": "B", 
+        "duration": "C",
+        "billableDuration": "G",  
+        "activityType": "D", 
+        "comment": "E", 
+        "workItem": "F"
+    }
+}
