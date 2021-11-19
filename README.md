@@ -6,7 +6,7 @@ __timetracker-npm-import__ is a Node.js CLI for importing worklogs(csv/excel) to
 
 You can install __timetracker-npm-import__ using the Node Package Manager (npm):
 
-    npm install timetracker-npm-import
+    npm install timetracker-npm-import -g
 
 To build the application locally, you need to get the code from the repository and run the commands in the source folder:
 
