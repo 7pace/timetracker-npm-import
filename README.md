@@ -36,8 +36,8 @@ There are two options:
 
 | UserName  | TimeStamp  | Duration  | ActivityType  | Comment  | WorkItem  | BillableDuration  |
 | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
-|   | 02.09.2019 10:12  | 2.13  | Development  | Test comment  | 22  | 1.13  |
-| test@mail.com  | 05.09.2019 17:43  | 1.5  | Daily  |   | 33  |  1 |
+|   | 05.29.2021 10:12  | 2.13  | Development  | Test comment  | 22  | 1.13  |
+| test@mail.com  | 05.29.2021 17:43  | 1.5  | Daily  |   | 33  |  1 |
 
 **The import file should not contain column names, only the data you are importing.*
 
@@ -46,7 +46,7 @@ There are two options:
 **Description of fields used**
 
 - UserName - User to whom worklog is created. If not specified - it will be created to current user
-- TimeStamp - Start date and time of worklog in your local timezone.
+- TimeStamp - Start date and time of worklog in the US timezone format.
 - Duration - Duration of worklog in hours
 - BillableDuration - Billable duration of worklog in hours. Only use it when billable lenght should be different from actual
 - ActivityType - Activity type to set to worklog. If not specified - default activity type for user of worklog will be used
