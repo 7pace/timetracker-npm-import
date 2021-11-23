@@ -39,7 +39,7 @@ There are two options:
 |   | 05.29.2021 10:12  | 2.13  | Development  | Test comment  | 22  | 1.13  |
 | test@mail.com  | 05.29.2021 17:43  | 1.5  | Daily  |   | 33  |  1 |
 
-**The TimeStamp field currently only accepts the US time and date formats such as mm.dd.yyyy hh:mm:ss and mm/dd/yyyy hh:mm:ss*
+**The TimeStamp field currently only accepts the US time and date formats such as mm.dd.yyyy hh:mm and mm/dd/yyyy hh:mm*
 
 **Description of fields used**
 
