@@ -39,8 +39,9 @@ There are two options:
 |   | 02.09.2019 10:12  | 2.13  | Development  | Test comment  | 22  | 1.13  |
 | test@mail.com  | 05.09.2019 17:43  | 1.5  | Daily  |   | 33  |  1 |
 
-*The import file should not contain column names, only the data you are importing.
-*The TimeStamp field currently only accepts the US time and date formats such as mm.dd.yyyy hh:mm:ss and mm/dd/yyyy hh:mm:ss
+**The import file should not contain column names, only the data you are importing.*
+
+**The TimeStamp field currently only accepts the US time and date formats such as mm.dd.yyyy hh:mm:ss and mm/dd/yyyy hh:mm:ss*
 
 **Description of fields used**
 
