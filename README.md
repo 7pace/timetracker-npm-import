@@ -75,13 +75,13 @@ Options:
 Call command on the command line for the cloud version of Azure DevOps
 
 ```console
-import-worklogs -f "C:\WorkLogs\sample data.xlsx" -o "time-mars" --api "https://timetracker-ci.azurewebsites.net" -t "b3YGM6IXjQXrNYw_JjLQnFoxMJGa11NOc5FbGpvCzeVWLzPVSyXpuQCQUz69mkizwj8lDbYjA8vW3zFjjd-5o7zr7lutuZvvPbdAV6lKbm69PeDng9XLpDssS4YIzDiMUu84IadYTZnjxqg2tU4XhPh4hdUJyfF-MfiWtB2XhAdicgUUmVQSP-ziR0NwhplDhxfmKOpkYtBWljnHIKU4RFvEllMGsCuoLL6Yz6rVIn2VU0ZMKFvWuTD42H1RzeC4iFoTC-bCXQ0FY_O5G_ItR5-crRlWMARzzGS8zaR5wz4AJcoya5XUFckSb4Uh2iifJfqJxD19TMJfscne3yNt7fhZk8ihMb0rAtCyUhMh-ONglbMF4Hrj1pSttA1srBAXgYNw7Ow-BCn7GrPaHmsuU3tOLd_gahh7lqLVaw1_z6_eusPh" -a "token"
+import-worklogs -f "C:\WorkLogs\sample data.xlsx" -o "{organization name}" --api "https://{organization name}.timehub.7pace.com" -t "{token value}" -a "token"
 ```
-In the cloud version, you can explicitly set the api that should be used to download worklogs. If this parameter is not passed, then the "organization" will be used to form the api url: "https://${organization}.timehub.7pace.com". Also for the cloud version, it is important to set the authentication type "token" and set the token parameter.
+In the cloud version, it is important to set the authentication type "token" and set the token parameter.
 
 Call command on the command line for the on-prem version of Azure DevOps
 
 ```console
-import-worklogs -f "C:\WorkLogs\sample data.xlsx" -u "test@mail.com" -p "MyPassword123" -o "DefaultCollection" --api "http://test-tfs2019.7pace.local:8090" -m -a "ntlm"
+import-worklogs -f "C:\WorkLogs\sample data.xlsx" -u "test@mail.com" -p "MyPassword123" -o "DefaultCollection" --api "http://test-2021.your-organization.local:8090" -m -a "ntlm"
 ```
-For the on-prem version, it is necessary to set the ntlm authorization type and be sure to pass the api and organization parameters, they are necessary for generating api requests. In order for NTLM authorization to work, you must also provide a login (user) and password
+For the on-prem version, it is necessary to set the ntlm authorization type and be sure to pass the api and organization parameters, they are necessary for generating api requests. In order for NTLM authorization to work, you must also provide a login (user) and password.
