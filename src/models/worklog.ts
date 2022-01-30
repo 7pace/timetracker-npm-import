@@ -6,4 +6,5 @@ export interface Worklog {
     billableLength? : number;
     comment? : string;
     activityTypeId? : string;
+    organization? : string;
 }
