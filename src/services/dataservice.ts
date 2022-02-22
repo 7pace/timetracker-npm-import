@@ -56,7 +56,7 @@ export class DataService{
                 timestamp += " " + element[map.start];
               }
               else{
-                timestamp += " 9:00 AM";
+                timestamp += " 12:00 AM";
               }
               var date = Date.parse(timestamp);
               if(!isNaN(date)){
