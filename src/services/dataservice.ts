@@ -11,9 +11,9 @@ const config = require('../../config.json');
 export class DataService{
     constructor(@inject('APIService') private apiService: APIService) {}
 
-    getMappingData(file: string, columnsFromExcel : boolean): Worklog[] {
+    getMappingData(file: string, columnsFromExcel : boolean, apiUrl? : string, defaultOrganization? : string): Map<string, Worklog[]> {
 
-        var result: Array<Worklog> = new Array<Worklog>();
+        var result: Map<string, Worklog[]> = new Map<string, Array<Worklog>>();
         var errors: Array<string> = new Array<string>();
 
         var wb: XLSX.WorkBook = XLSX.readFile(file);       
@@ -22,9 +22,11 @@ export class DataService{
         var xlData : Array<any> = XLSX.utils.sheet_to_json(wb.Sheets[sheet_name_list[0]], opt);
         var map: ColumnsMap = columnsFromExcel 
           ? {userName: 'UserName', workItem: 'WorkItem', timeStamp: 'TimeStamp', duration: 'Duration', 
-              billableDuration: 'BillableDuration', comment: 'Comment', activityType: 'ActivityType'} 
+              billableDuration: 'BillableDuration', comment: 'Comment', activityType: 'ActivityType',
+              date: 'Date', start: 'Start', organization: 'Organization'} 
           : config.map as ColumnsMap;
         var addIndex = columnsFromExcel ? 2 : 1;
+        let requireOrganization = !apiUrl
         for (let index = 0; index < xlData.length; index++) {
           const element = xlData[index];
           var workLog : Worklog = {};
@@ -47,6 +49,23 @@ export class DataService{
               workLog.timeStamp = new Date(date).toLocaleString();
             else 
               errors.push(`"TimeStamp" is not a valid datetime value in a cell ${map.timeStamp}${index + addIndex}.`);
+          } else{
+            if(map.date && element[map.date]){
+              var timestamp = element[map.date]
+              if(map.start && element[map.start]){
+                timestamp += " " + element[map.start];
+              }
+              else{
+                timestamp += " 9:00 AM";
+              }
+              var date = Date.parse(timestamp);
+              if(!isNaN(date)){
+                workLog.timeStamp = new Date(date).toLocaleString();
+              }
+              else {
+                errors.push(`"Date" and "Start" do not specify a valid starting datetime value "${timestamp}" in a cell(s) ${map.date}${index + addIndex}.`);
+              }
+            }
           }
       
           if(map.duration && element[map.duration]){
@@ -77,9 +96,35 @@ export class DataService{
           {
             errors.push(`"Comment" (cell ${map.comment}${index + addIndex}) and "WorkItem" (cell ${map.workItem}${index + addIndex}) are not specified. At least one of these values must be specified.`);
           }
+
+          let mapKey
+          if(map.organization && element[map.organization] && element[map.organization] !== ''){
+            mapKey = element[map.organization];
+          } else if(requireOrganization){
+            if(!defaultOrganization || defaultOrganization.trim() === ''){
+              errors.push(`"Organization" (cell ${map.comment}${index + addIndex}) and -o / --organization <organization> command line parameter are not specified. At least one of these values must be specified.`);
+              continue;
+            }
+            else{
+              mapKey = defaultOrganization;
+            }
+          } else{
+            mapKey = apiUrl;
+          }
+
+          if(mapKey) {
+            mapKey = mapKey.toLowerCase();
+          }
+          
+          let orgResult = result.get(mapKey)
+          let organizationWorkLogs: Worklog[] = orgResult ? orgResult : new Array<Worklog>();
+          if(!result.has(mapKey)){
+            result.set(mapKey, organizationWorkLogs);
+          }
       
-          result.push(workLog);   
+          organizationWorkLogs.push(workLog);   
         }
+
         if(errors.length > 0){
           throw errors;
         }

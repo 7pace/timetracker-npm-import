@@ -55,17 +55,15 @@ export class ValidatorService{
           this.showError("Map is not specified in config.json");
           errorsExist = true;
         }
-        if (program.authorization.toLowerCase() == AuthType.token.valueOf() && !program.api && !program.organization){
-          this.showError("Api url and organization are not specified");
-          errorsExist = true;
-        }
         if (program.authorization.toLowerCase() == AuthType.ntlm.valueOf() && (!program.api || !program.organization)){
           this.showError("Api url and organization are not specified");
           errorsExist = true;
         }
         if (program.authorization.toLowerCase() == AuthType.token.valueOf() && !program.token){
-          this.showError("Token is not specified");
-          errorsExist = true;
+          if(!config.organizationTokens || config.organizationTokens.length === 0){
+            this.showError("Token is not specified, and organizationTokens not specified in config.json");
+            errorsExist = true;
+          }
         }
         if (program.authorization.toLowerCase() == AuthType.ntlm.valueOf() && (!program.user || !program.password)){
           this.showError("User and password are not specified");
